@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import {
   GlobeAltIcon,
@@ -14,6 +15,7 @@ function Header() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [guests, setGuests] = useState(0);
+  const router = useRouter();
 
   const selectionRange = {
     startDate,
@@ -29,6 +31,19 @@ function Header() {
     setStartDate(range.selection.startDate);
     setEndDate(range.selection.endDate);
     console.log(range);
+  };
+
+  const handleSearch = () => {
+    router.push({
+      pathname: "/search",
+      query: {
+        location: searchInput,
+        startDate: startDate.toISOString().split("T")[0],
+        endDate: endDate.toISOString().split("T")[0],
+        guests,
+      },
+    });
+    setSearchInput("");
   };
 
   return (
@@ -51,7 +66,10 @@ function Header() {
           value={searchInput}
           onChange={handleChangeInput}
         />
-        <SearchIcon className="h-6 bg-red-400 p-1 rounded-full text-white hidden md:inline-flex" />
+        <SearchIcon
+          className="h-6 bg-red-400 p-1 rounded-full text-white hidden md:inline-flex"
+          onClick={handleSearch}
+        />
       </div>
       {/* right */}
       <div className="flex justify-end items-center">
@@ -86,7 +104,9 @@ function Header() {
           </div>
           <div className="flex py-2">
             <button className="text-grey-500 flex-grow">Cancel</button>
-            <button className="text-red-500 flex-grow">Search</button>
+            <button className="text-red-500 flex-grow" onClick={handleSearch}>
+              Search
+            </button>
           </div>
         </div>
       )}

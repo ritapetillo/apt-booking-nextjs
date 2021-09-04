@@ -2,8 +2,6 @@ import Head from "next/head";
 import Banner from "../components/Banner";
 import Explore from "../components/Explore";
 import LiveEverywhere from "../components/LiveEverywhere";
-import "react-date-range/dist/styles.css"; // main css file
-import "react-date-range/dist/theme/default.css"; // theme css file
 
 export default function Home({ destinations, liveEverywhereData }) {
   return (
