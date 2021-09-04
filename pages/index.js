@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Banner from "../components/Banner";
 import Explore from "../components/Explore";
-import Header from "../components/Header";
 import LiveEverywhere from "../components/LiveEverywhere";
 
 export default function Home({ destinations, liveEverywhereData }) {
@@ -11,7 +10,6 @@ export default function Home({ destinations, liveEverywhereData }) {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
       {/* <h1>App</h1> */}
       <Banner />
       <Explore destinations={destinations} />
